@@ -42,6 +42,9 @@ Dear Sir/Madam,
 
     I am writing to formally escalate my request for the issuance of my Foreclosure Letter (FCL), which has been pending for more than 50 days despite multiple follow-ups.
 
+    Loan Code : LXMOBANGAL5423-240681055
+    Applicant Name : NARENDRAN KOTTINIGAL NARAYANAN
+
 I have already:
 - Contacted my Bangalore branch manager multiple times with no resolution.
 - Spoken to your customer support team last week, who acknowledged my request via email and assured that the payment link for the Foreclosure Letter would be shared shortly.
