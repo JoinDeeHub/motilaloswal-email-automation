@@ -1,8 +1,11 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
 import os
 from datetime import datetime
+
 
 # Load credentials from GitHub Secrets
 EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")
@@ -39,7 +42,7 @@ subject = f"URGENT: Foreclosure Letter Pending for Over 50 Days – Immediate Ac
 body = """
 Dear Sir/Madam,
 
-I am writing to formally escalate my request for the issuance of my Foreclosure Letter (FCL), which has been pending for more than 50 days despite multiple follow-ups.
+    I am writing to formally escalate my request for the issuance of my Foreclosure Letter (FCL), which has been pending for more than 50 days despite multiple follow-ups.
 
 I have already:
 - Contacted my Bangalore branch manager multiple times with no resolution.
@@ -63,6 +66,7 @@ Regards,
 Akshay Narendra  
 Mobile: 9620045087  
 Email: abi.akshay8@gmail.com
+
 """
 
 def attach_files(msg, file_paths):
