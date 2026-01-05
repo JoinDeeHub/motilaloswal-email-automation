@@ -13,16 +13,14 @@ EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
 # Recipients
 to_recipients = [
-    "gypsy2.hny@gmail.com"
-    #"hfquery@motilaloswal.com"
+    "hfquery@motilaloswal.com"
 ]
 
 cc_recipients = [
-    "abi.akshay8@gmail.com"
-    #"customercare@motilaloswal.com",
-    #"grievances@motilaloswal.com",
-    #"query@motilaloswal.com",
-    #"IR.MOAlts@motilaloswal.com"
+    "customercare@motilaloswal.com",
+    "grievances@motilaloswal.com",
+    "query@motilaloswal.com",
+    "IR.MOAlts@motilaloswal.com"
 ]
 
 
