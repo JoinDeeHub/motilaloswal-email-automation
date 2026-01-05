@@ -2,6 +2,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import os
+from datetime import datetime
 
 # Load credentials from GitHub Secrets
 EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")
@@ -9,66 +10,65 @@ EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
 # Recipients
 to_recipients = [
-    "nodalofficer@pnbhousing.com",
-    "cpc@rbi.org.in",
-    "customercare@pnbhousing.com",
-    "gro.south@pnbhousing.com",
-    "gro.north@pnbhousing.com",
-    "gro.west@pnbhousing.com",
-    "executivedirector@pnbhousing.com"
-
+    "hfquery@motilaloswal.com"
 ]
 
 cc_recipients = [
-    "Girisha.hp@pnbhousing.com",
-    "Manigandan.Ranganathan@pnbhousing.com",
-    "durga.nair@pnbhousing.com",
-    "nagesha.as@pnbhousing.com"
+    "customercare@motilaloswal.com"
 ]
 
-# Subject & Body
-subject = "Request for Refund of EMI Payment Due to Delay in E-Katha Update"
-body = """
-Hi Sir/Madam,
+# Dynamic date
+today = datetime.now().strftime("%d %b %Y")
 
-The reason for this request is a significant delay beyond my control: The Karnataka Government's E-Katha portal remains non-functional and has not been updated, preventing me from obtaining the crucial E-Katha document required to complete the legal registration of the property financed by this loan. Consequently, the property registration process and associated formalities are stalled indefinitely.
+# Subject
+subject = f"URGENT: Foreclosure Letter Pending for Over 50 Days – Immediate Action Required ({today})"
 
-As the property registration is incomplete and ownership cannot be formally transferred due to this administrative issue caused by the government portal, I believe the continued deduction of EMIs under these circumstances is unjustified. The delay stems entirely from external factors not attributable to me.
+# Email body
+body = f"""
+Dear Sir/Madam,
 
-Therefore, I kindly request you to:
+I am writing to formally escalate my request for the issuance of my Foreclosure Letter (FCL), which has been pending for more than 50 days despite multiple follow-ups.
 
-- Initiate a full refund of the EMI amount(s) deducted towards my Home Loan Account,
-- For the period during which the E-Katha document remains unavailable, preventing registration.
+I have already:
+- Contacted my Bangalore branch manager multiple times with no resolution.
+- Spoken to your customer support team last week, who acknowledged my request via email and assured that the payment link for the Foreclosure Letter would be shared shortly.
 
-Loan Account No: HOU/BLRS/0924/1308242XX
+However, till date, no payment link or update has been provided.
 
-I trust you will recognize the exceptional nature of this situation caused by government system delays. I request your urgent attention to this matter and the processing of this refund without undue delay.
+This delay is unacceptable and is not in line with standard banking practices. Other banks provide foreclosure letters immediately upon request. The continued inaction is causing unnecessary financial and mental distress.
 
-Please inform me promptly if any additional documentation or information is required from my end to facilitate this refund process.
+Please note that such prolonged delay constitutes a “deficiency in service” under applicable Consumer Protection laws. I request that this matter be treated with urgency to avoid further escalation.
 
-Thank you for your time, understanding, and cooperation. I look forward to your positive resolution.
+I hereby request you to do one of the following on priority:
+1. Share the payment link for issuance of the Foreclosure Letter immediately, OR
+2. Confirm the exact date by which the Foreclosure Letter will be issued.
 
-Sincerely,  
-DEEPIKA NARENDRAN  
+Relevant documents, including the sanction letter and account statement, have already been shared earlier for your reference.
 
+Kindly confirm resolution within 48 hours of receipt of this email.
+
+Regards,  
+Akshay Narendra  
+Mobile: 9620045087  
+Email: abi.akshay8@gmail.com
 """
 
 def send_email():
     msg = MIMEMultipart()
-    msg['From'] = EMAIL_ADDRESS
-    msg['To'] = ", ".join(to_recipients)
-    msg['Cc'] = ", ".join(cc_recipients)
-    msg['Subject'] = subject
-    msg.attach(MIMEText(body, 'plain'))
+    msg["From"] = EMAIL_ADDRESS
+    msg["To"] = ", ".join(to_recipients)
+    msg["Cc"] = ", ".join(cc_recipients)
+    msg["Subject"] = subject
+    msg.attach(MIMEText(body, "plain"))
 
     all_recipients = to_recipients + cc_recipients
 
     try:
-        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls()
             server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
             server.sendmail(EMAIL_ADDRESS, all_recipients, msg.as_string())
-        print("✅ Email sent successfully!")
+        print("✅ Foreclosure escalation email sent successfully!")
     except Exception as e:
         print("❌ Error sending email:", e)
 
